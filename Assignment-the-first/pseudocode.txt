@@ -45,6 +45,6 @@
 
 # Iterate through dictionary, close all open files
 # Close hopped and undetermined files
-# Using open()
-# Report number of matched, hopped, and undetermined indices
-# Report frequencies of each pair by iterating over the dictionary 
+# Using with open(), open a file in order to write results. To this file, write:
+	# Number of matched, hopped, and undetermined indices
+	# frequencies of each barcode pair by iterating over the dictionary 
