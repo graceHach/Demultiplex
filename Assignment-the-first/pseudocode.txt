@@ -1,8 +1,23 @@
-# Create variables for number of reads that are matched, undetermined, and hopped, initialize the value to zero
+# INITIALIZE VARIABLES
+
+# Create variables for number of reads that are matched, undetermined, and hopped, initialize the values to zero
 # Create a set of the 24 barcodes  
-# Open the files for hopped and undetermined reads
-# Initialize a dictionary - this will hold all matched barcode pairs (keys) and a tuple containing the names of the file handles (values). When a new, matched, high quality index pair is seen, the files (R1 and R2) for this pair will be opened, so whether or not a pair is present in the dictionary indiciates whether the file is already open
-# Open all four files simultaneously, using a open() and a while-True loop
+# Open two files each (R1 and R2) for hopped and undetermined reads
+# Initialize a dictionary - this will hold all matched barcode pairs (keys) and a tuple containing the file handles (values). When a new, 
+# matched, high quality index pair is seen, the files (R1 and R2) for this pair will be opened, so whether or not a pair is present in the dictionary 
+# indiciates whether the file is already open
+# Initialize another dictionary to count the number of high-quality, matched reads correspoding to each of the 24 barcodes. The keys come from the set 
+# of 24 barcodes, and the values are the number of times a pair has been encountered, so they are initialized to zero.
+	# To this dictionary, we will also add high quality, unmatched pairs as they are encountered, and keep track of the number of occurances of each
+	# of these hopped pairs 
+	# Note that per Leslie's message on slack, we would like to keep track of the combinations (which are unordered) of each unmatched index pair, not
+	# the permutations (where order matters) so when these are added to the dictionary as keys, the first barcode lexicographic should be first.  
+
+# MAIN ITERATION
+
+# Open all four files simultaneously, using a with open() and a while-True loop 
+	# Note that "with" context manager will automatically close the FastQ files that are opened, but won't close any other files that are opened  
+	# during the iteration 
 # Iterate over the lines of each file in groups of four
 # For each group of four lines:
 	# Read into memory the fastQ IDs, the, barcodes the sequence lines, and the Q score lines for one record at a time, for all four files
@@ -11,15 +26,25 @@
 	# Check if there are any Ns in the indices, or if the indices are below the quality cutoff
 		# If so, write R1 and R2, with their respective new ID lines to the undetermined file
 		# increment undetermined count
-	# Check of the barcodes match
+	# Check if the barcodes match or if the barcodes are present in the set of 24
 		# If not, write R1 and R2, with their respective new ID lines to the undetermined file
 		# increment hopped count
-	# If neither of the above conditions is met, this is high quality and matched, so the matched count should be incremented
-	# Check if the index-pair is stored in the dictionary
-		# If so, write the records and new ID lines to the appropriate files using the file handles in the dictionary
-		# If not, open the file for R1 and R2
-			# Add the barcode pair to the dictionary as a key and the file handles packed together into a tuple as the value
-			# write the records and new ID lines to the appropriate files using the file handles
+			# Check if the index pair is present in the dictionary counting number of occurances of each pair
+				# If so, increment its count
+				# If not, add it to the dictionary and set the value to one
+	# If neither of the above conditions is met, this is high quality and matched,
+		# increment the matched count
+		# Check if the index-pair is stored in the dictionary
+			# If so, write the records and new ID lines to the appropriate files using the file handles in the dictionary
+			# If not, open the file for R1 and R2
+				# Add the barcode pair to the dictionary as a key and the file handles packed together into a tuple as the value
+				# write the records and new ID lines to the appropriate files using the file handles
 # break when EOF is reached
+
+# WRAP UP
+
 # Iterate through dictionary, close all open files
+# Close hopped and undetermined files
+# Using open()
 # Report number of matched, hopped, and undetermined indices
+# Report frequencies of each pair by iterating over the dictionary 
