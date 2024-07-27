@@ -1,0 +1,25 @@
+# Create variables for number of reads that are matched, undetermined, and hopped, initialize the value to zero
+# Create a set of the 24 barcodes  
+# Open the files for hopped and undetermined reads
+# Initialize a dictionary - this will hold all matched barcode pairs (keys) and a tuple containing the names of the file handles (values). When a new, matched, high quality index pair is seen, the files (R1 and R2) for this pair will be opened, so whether or not a pair is present in the dictionary indiciates whether the file is already open
+# Open all four files simultaneously, using a open() and a while-True loop
+# Iterate over the lines of each file in groups of four
+# For each group of four lines:
+	# Read into memory the fastQ IDs, the, barcodes the sequence lines, and the Q score lines for one record at a time, for all four files
+	# Generate the reverse compliment of R3, override the original value of R3_seq with its compliment
+	# Create two new ID lines with fastQ IDs for both R1 and R2 by appending both barcodes to the end of the original fastQ IDS  
+	# Check if there are any Ns in the indices, or if the indices are below the quality cutoff
+		# If so, write R1 and R2, with their respective new ID lines to the undetermined file
+		# increment undetermined count
+	# Check of the barcodes match
+		# If not, write R1 and R2, with their respective new ID lines to the undetermined file
+		# increment hopped count
+	# If neither of the above conditions is met, this is high quality and matched, so the matched count should be incremented
+	# Check if the index-pair is stored in the dictionary
+		# If so, write the records and new ID lines to the appropriate files using the file handles in the dictionary
+		# If not, open the file for R1 and R2
+			# Add the barcode pair to the dictionary as a key and the file handles packed together into a tuple as the value
+			# write the records and new ID lines to the appropriate files using the file handles
+# break when EOF is reached
+# Iterate through dictionary, close all open files
+# Report number of matched, hopped, and undetermined indices
