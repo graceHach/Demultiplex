@@ -1,0 +1,73 @@
+# HIGH_LEVEL FUNCTIONS
+
+def read_barcodes(barcodes_filename):
+    '''
+    Reads the barcodes file, keeps only the 8 character barcodes
+    Input:
+        filename (str) - (not file handle) of text file containing barcodes, including file extension
+    Output:
+        set of barcodes
+    '''
+    return bc_set
+    
+    Input: "indexes.txt"
+    Output:
+    {GTAGCGTA, CGATCGAT, GATCAAGG, AACAGCGA, TAGCCATG, CGGTAATC, CTCTGGAT,
+    TACCGGAT, CTAGCTCA, CACTTCAC, GCTACTCT, ACGATCAG, TATGGCAC, TGTTCCGT, 
+    GTCCTAAG, TCGACAAG, TCTTCGAC, ATCATGCG, ATCGTGGT, TCGAGAGT, TCGGATTC, 
+    GATCTTGC, AGAGTCCA, AGGATAGC}
+
+def rev_comp(sequence):
+    '''
+    Generates the reverse compliment of a sequence
+    If Ns are present, Ns will be used as base pairs
+    Input:
+        sequence (str) - a DNA sequence, 5' to 3'
+    Output:
+        rev (str) - its reverse compliment, also 5' to 3'
+    '''
+    return rev
+    
+    Input: "AACAGCGA"
+    Output: "TCGCTGTT"
+
+def write_results(matched_count, hopped_count, unk_count, barcodes_pair_dict, filename):
+    '''
+    Writes the results of analysis to a tsv file
+    Input:
+        matched_count (int) - number of matched reads
+        hopped_count (int) - number of hopped reads
+        unk_count (int) - number of undetermined reads
+        barcodes_pair_dict (dict) -  
+            keys - single barcodes (indicating matched pairs)
+                OR tuples of barcodes (indicating high-quality hopped reads)
+            values - integer frequencies of each pair
+        filename (str) - filename to write to. .tsv will be appened to
+    Output: 
+        none
+    '''
+    return
+
+
+def write_record(r1_seq, r1_new_ID, r1_qs, r1_fh, r4_seq, r4_new_ID, r4_qs, r4_fh)
+    '''
+    Writes two records as properly to two file handles that are already open!
+    Which file handle is appropriate is determined in the central conditional ladder of the main code 
+    File handles are retreived from the dictionary and passed into the function if present, or created 
+    in the main code and added to the dictionary if not
+    Note that barcodes have already been added to the IDS
+    Input:
+        r1_seq (str) - the full sequence (biological read 1)
+        r1_new_ID (str) - fastQ ID with barcodes added (corresponding to biological read 1)
+        r1_qs (str) - quality score line (corresponding to biological read 1)
+        r1_fh (file handle) - appropriate file handle
+        r4_seq (str) - the full sequence (biological read 2)
+        r4_new_ID (str) - fastQ ID with barcodes added (corresponding to biological read 1)
+        r4_qs (str) - quality score line (corresponding to biological read 2)
+        r4_fh (str) - appropriate file handle
+    Output:
+        None
+    '''
+
+    return 
+
