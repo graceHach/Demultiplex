@@ -23,7 +23,7 @@
     3. 7,304,664 out of 726,493,470 total lines contain Ns.
     
     ```
-    zcat 1294_S1_L008_R2_001.fastq.gz 1294_S1_L008_R3_001.fastq.gz | sed -n '2~4p' | grep -E 'N' -v | wc -l
+    zcat 1294_S1_L008_R2_001.fastq.gz 1294_S1_L008_R3_001.fastq.gz | sed -n '2~4p' | grep -E 'N' | wc -l
     ```
     
 ## Part 2
