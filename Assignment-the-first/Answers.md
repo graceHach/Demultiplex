@@ -20,7 +20,7 @@
     2. When it comes to the index quality I think it's justifiable to be far more permissive. If the index isn't present in the group of 24, it automatically goes to the undetermined file. Thus, the Q score filtering criterion is relevant **only in the case where the barcode does match one of the 24.** Since there are eight bases per barcode, and 4 possibilities for each base, there are 4096 possible barcodes. Thus, even if the bases are randomly picked out of a hat, the probability that a barcode is misread, but coincidentally reads as another of the 24 is very unlikely, because they represent less than 0.6% of the total space of 8 base sequences.
     **For these reasons, I will filter only sequences with a mean Q score below 20.**
 
-    3. 719,188,806 out of 726,493,470 total lines do not contain Ns.
+    3. 7,304,664 out of 726,493,470 total lines contain Ns.
     
     ```
     zcat 1294_S1_L008_R2_001.fastq.gz 1294_S1_L008_R3_001.fastq.gz | sed -n '2~4p' | grep -E 'N' -v | wc -l
