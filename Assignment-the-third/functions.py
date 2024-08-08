@@ -13,10 +13,11 @@ def read_barcodes(barcodes_filename):
     '''
     bc_set = set()
     with open(barcodes_filename, 'rt') as fh:
-        for line in fh:
+        for index, line in enumerate(fh):
             line=line.strip()
             line_elements = line.split()
-            bc_set.add(line_elements[4])
+            if index: # prevents from reading in header line
+                bc_set.add(line_elements[4])
     return bc_set
 
 
@@ -102,8 +103,8 @@ def write_record(r1_seq, r1_new_ID, r1_qs, r1_fh, r4_seq, r4_new_ID, r4_qs, r4_f
     r1_fh.write(r1_seq+'\n')
     r1_fh.write('+'+'\n')   
     r1_fh.write(r1_qs+'\n') 
-    r4_fh.write('\n'+r4_new_ID+'\n')
+    r4_fh.write(r4_new_ID+'\n')
     r4_fh.write(r4_seq+'\n')
     r4_fh.write('+'+'\n')   
     r4_fh.write(r4_qs+'\n')  
-    return 
+    return

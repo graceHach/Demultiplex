@@ -17,6 +17,7 @@ returned_set_list = sorted(list(returned_set))
 
 for i, item in enumerate(correct_set_list):
     assert item==returned_set_list[i], "test of read_barcodes failed"
+    assert len(correct_set)==len(returned_set), "test of read_barcodes failed! more items in returned set."
 
 
 #   TESTING rev_comp()
