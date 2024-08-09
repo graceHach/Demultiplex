@@ -9,13 +9,14 @@
 import argparse
 import bioinfo
 import functions as f
+import gzip
 
 def parse():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-r1_in', help="input r1 filename",type=str, default="../TEST-input_FASTQ/R1.fastq")
-    parser.add_argument('-r2_in', help="input r2 filename",type=str, default="../TEST-input_FASTQ/R2.fastq")
-    parser.add_argument('-r3_in', help="input r3 filename",type=str, default="../TEST-input_FASTQ/R3.fastq")
-    parser.add_argument('-r4_in', help="input r4 filename",type=str, default="../TEST-input_FASTQ/R4.fastq")
+    parser.add_argument('-r1_in', help="input r1 filename",type=str, default="../TEST-input_FASTQ/R1.fastq.gz")
+    parser.add_argument('-r2_in', help="input r2 filename",type=str, default="../TEST-input_FASTQ/R2.fastq.gz")
+    parser.add_argument('-r3_in', help="input r3 filename",type=str, default="../TEST-input_FASTQ/R3.fastq.gz")
+    parser.add_argument('-r4_in', help="input r4 filename",type=str, default="../TEST-input_FASTQ/R4.fastq.gz")
     parser.add_argument('-index_in', help="input filename with indexes",type=str, default='/projects/bgmp/shared/2017_sequencing/indexes.txt')
     parser.add_argument('-results_dir', help="folder to write resulting fastq into",type=str, default='results/')
     parser.add_argument('-matched_output_filename', help="filename to write to results. .tsv will be appended",type=str, default="../results_summarized/matched_frequencyTEST")
@@ -62,7 +63,7 @@ for code in barcodes:
 # Open all four files simultaneously, using a with open()
     # Note that "with" context manager will automatically close the FastQ files that are opened, but won't close any other files that are opened  
     # during the iteration 
-with open(args.r1_in, 'rt') as r1, open(args.r2_in, 'rt') as r2, open(args.r3_in, 'rt') as r3, open(args.r4_in) as r4:
+with gzip.open(args.r1_in, 'rt') as r1, gzip.open(args.r2_in, 'rt') as r2, gzip.open(args.r3_in, 'rt') as r3, gzip.open(args.r4_in,'rt') as r4:
     while True:
         # Iterate over the lines of each file in groups of four
         # For each group of four lines:
