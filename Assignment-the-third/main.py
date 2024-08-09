@@ -39,10 +39,10 @@ barcodes = f.read_barcodes(args.index_in)
 # indiciates whether the file is already open
     # To this dictionary, I'll also add "R1_hopped", "R2_hopped", "R1_unk" and "R2_unk" keys and file handle values
 file_handles = {} 
-r1_h = open(args.results_dir+"R1_hopped.fastq",'wt')
-r4_h = open(args.results_dir+"R2_hopped.fastq",'wt')
-r1_u = open(args.results_dir+"R1_unk.fastq",'wt')
-r4_u = open(args.results_dir+"R2_unk.fastq", 'wt')
+r1_h = open(args.results_dir+"hopped_r1.fastq",'wt')
+r4_h = open(args.results_dir+"hopped_r2.fastq",'wt')
+r1_u = open(args.results_dir+"unknown_r1.fastq",'wt')
+r4_u = open(args.results_dir+"unknown_r2.fastq", 'wt')
 file_handles['hopped'] = (r1_h, r4_h)
 file_handles["unk"] = (r1_u, r4_u)    # These need to be packed up for later
 
@@ -101,8 +101,6 @@ with open(args.r1_in, 'rt') as r1, open(args.r2_in, 'rt') as r2, open(args.r3_in
         # CATEGORIZE THE READS
         r2_mean = bioinfo.qual_score(r2_qs)
         r3_mean = bioinfo.qual_score(r3_qs)
-        print(r3_ID,r3_seq)
-        print(not r3_seq in barcodes)
         # Check if the indices are below the quality cutoff, or not within the set of 24
         if r2_mean < 20 or r3_mean < 20 or not r2_seq in barcodes or not r3_seq in barcodes:
             # If so, write R1 and R2, with their respective new ID lines to the undetermined file
