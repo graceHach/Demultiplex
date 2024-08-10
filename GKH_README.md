@@ -8,11 +8,14 @@ Results for the data in `/projects/bgmp/shared/2017_sequencing/` in tsv format i
 | Matched count: | 330,738,415 |
 |  Hopped count: |   679,459   |
 | Unknown count: | 31,828,861  |
+
 These results are also summarized in this figure:
-[fig1](results_summarized/fig1.png)
+
+![fig1](results_summarized/fig1.png)
 
 [Assignment the first](Assignment-the-first/) comprises the outline of the algorithm and the main functions, as well as exploratory data analysis. Commands and notes can be found [here](Assignment-the-first/Assignment_The_First_Working_Notes.pdf). Quality score cutoff was determined by plotting the data using a script that can be run easily with [run.sh](run.sh). This was used to generate the following figure:
-[fig0](Assignment-the-first/quality_hist.py)
+
+![fig0](Assignment-the-first/quality_hist.py)
 
 [Assignment the third](Assignment-the-third/) contains the actual code, and appropriate tests.
 Unit testing of individual functions is done by [this](Assignment-the-third/test_functions.sh) script, and functional testing is done by [this](Assignment-the-third/test_whole_script.sh). Test files are included in the repo. 
