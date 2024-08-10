@@ -15,7 +15,7 @@ These results are also summarized in this figure:
 
 [Assignment the first](Assignment-the-first/) comprises the outline of the algorithm and the main functions, as well as exploratory data analysis. Commands and notes can be found [here](Assignment-the-first/Assignment_The_First_Working_Notes.pdf). Quality score cutoff was determined by plotting the data using a script that can be run easily with [run.sh](run.sh). This was used to generate the following figure:
 
-![fig0](Assignment-the-first/quality_hist.py)
+![fig0](Assignment-the-first/quality_hist.png)
 
 [Assignment the third](Assignment-the-third/) contains the actual code, and appropriate tests.
 Unit testing of individual functions is done by [this](Assignment-the-third/test_functions.sh) script, and functional testing is done by [this](Assignment-the-third/test_whole_script.sh). Test files are included in the repo. 
